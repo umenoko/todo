@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss'
 
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,6 +15,7 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      sans: ["var(--font-sans)", ...fontFamily.sans],
     },
   },
   plugins: [],
