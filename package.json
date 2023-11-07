@@ -9,7 +9,9 @@
     "lint": "next lint",
     "fix": "bun fix:eslint && bun fix:prettier",
     "fix:eslint": "next lint --fix",
-    "fix:prettier": "prettier --write --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json}\""
+    "fix:prettier": "prettier --write --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json}\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.2",
@@ -52,6 +54,15 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "7.5.3",
+    "@storybook/addon-interactions": "7.5.3",
+    "@storybook/addon-links": "7.5.3",
+    "@storybook/addon-mdx-gfm": "7.5.3",
+    "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/blocks": "7.5.3",
+    "@storybook/nextjs": "7.5.3",
+    "@storybook/react": "7.5.3",
+    "@storybook/testing-library": "0.2.2",
     "@trivago/prettier-plugin-sort-imports": "4.2.1",
     "@types/node": "20.8.10",
     "@types/react": "18.2.36",
@@ -61,9 +72,11 @@
     "eslint-config-next": "14.0.1",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "5.0.1",
+    "eslint-plugin-storybook": "0.6.15",
     "postcss": "8.4.31",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
+    "storybook": "7.5.3",
     "tailwindcss": "3.3.5",
     "typescript": "5.2.2"
   }
