@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fix": "bun fix:eslint && bun fix:prettier",
+    "fix:eslint": "next lint --fix",
+    "fix:prettier": "prettier --write --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.2",
@@ -37,25 +40,30 @@
     "clsx": "2.0.0",
     "cmdk": "0.2.0",
     "date-fns": "2.30.0",
-    "lucide-react": "0.291.0",
+    "lucide-react": "0.292.0",
     "next": "14.0.1",
     "react": "18.2.0",
     "react-day-picker": "8.9.1",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.47.0",
+    "react-hook-form": "7.48.2",
     "ress": "5.0.2",
     "tailwind-merge": "2.0.0",
     "tailwindcss-animate": "1.0.7",
     "zod": "3.22.4"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.2.1",
     "@types/node": "20.8.10",
-    "@types/react": "18.2.33",
+    "@types/react": "18.2.36",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
-    "eslint": "8.52.0",
+    "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-prettier": "5.0.1",
     "postcss": "8.4.31",
+    "prettier": "3.0.3",
+    "prettier-plugin-tailwindcss": "0.5.6",
     "tailwindcss": "3.3.5",
     "typescript": "5.2.2"
   }
