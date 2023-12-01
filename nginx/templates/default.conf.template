@@ -1,0 +1,28 @@
+server {
+    listen $NGINX_PORT;
+    server_name $NGINX_HOST;
+
+    proxy_redirect   off;
+    proxy_set_header Host               $host;
+    proxy_set_header X-Request-ID       $request_id;
+    proxy_set_header X-Real-IP          $remote_addr;
+    proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-User   $remote_user;
+    proxy_set_header X-Forwarded-Proto  $scheme;
+    proxy_set_header X-Forwarded-Port   $http_x_forwarded_port;
+    proxy_set_header X-Forwarded-Host   $host:$NGINX_PORT;
+
+    proxy_read_timeout 120;
+    proxy_connect_timeout 120;
+    proxy_send_timeout 120;
+
+    client_max_body_size 100m;
+
+    location /api/v1/ {
+        proxy_pass http://backend:5000;
+    }
+
+    location / {
+        proxy_pass http://frontend;
+    }
+}

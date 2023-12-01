@@ -27,28 +27,34 @@ services:
     volumes:
       - keycloakdb_data:/var/lib/postgresql/data
 
-  db:
+  tododb:
     image: postgres:15.2
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${TODO_DB_USER}
+      POSTGRES_PASSWORD: ${TODO_DB_PASSWORD}
     ports:
       - 5432:5432
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - tododb_data:/var/lib/postgresql/data
       # - ./database/Sql:/docker-entrypoint-initdb.d
 
   backend:
     build:
       context: ./backend
+    environment:
+      MODE: ${TODO_APP_MODE}
     depends_on:
-      - db
+      - tododb
+    ports:
+      - 5000:5000
 
   frontend:
     build:
       context: ./frontend
       target: production
       network: host
+    ports:
+      - 4000:80
 
   nginx:
     image: nginx
@@ -66,4 +72,4 @@ services:
 
 volumes:
   keycloakdb_data:
-  db_data:
+  tododb_data:
