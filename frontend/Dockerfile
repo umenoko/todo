@@ -6,10 +6,6 @@ COPY . /app
 EXPOSE 80
 CMD ["bun", "dev", "--port", "80", "--hostname", "0.0.0.0"]
 
-FROM base AS optimization
-COPY package.json bun.lockb /app/
-RUN bun install --production
-
 FROM base AS build
 COPY . /app
 ENV NODE_ENV=production
@@ -19,7 +15,7 @@ FROM oven/bun:1.0-slim as production
 WORKDIR /app
 ENV NODE_ENV=production
 COPY next.config.js package.json bun.lockb /app/
-COPY --from=optimization /app/node_modules /app/node_modules
+COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/.next /app/.next
 COPY public /app/public
 EXPOSE 80
