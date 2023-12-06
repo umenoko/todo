@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
     <html lang="ja">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background bg-gray-100 font-sans antialiased",
           fontSans.variable,
         )}
       >
