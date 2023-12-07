@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Clock5, PenSquare } from "lucide-react";
 
 export default function TodoPage() {
   return (
@@ -34,15 +35,21 @@ function StatusColumn() {
 
 function Card() {
   return (
-    <div className="flex flex-col gap-4 rounded bg-white p-5">
+    <div className="flex flex-col gap-4 rounded bg-white p-5 shadow">
       <div className="flex justify-between">
-        <div className="font-semibold">Title</div>
-        <Link href="/todo/id">■</Link>
+        <div className="flex items-center font-semibold">Title</div>
+        <Link
+          href="/todo/id"
+          className="grid h-10 w-10 place-items-center rounded hover:bg-gray-100"
+        >
+          <PenSquare className="h-4 w-4" />
+        </Link>
       </div>
       <div className="text-sm">overview</div>
       <div className="flex h-7 justify-end">
-        <div className="grid place-items-center rounded-lg bg-violet-100 px-3 text-sm font-medium text-violet-800">
-          ● 2023/12/01
+        <div className="flex items-center justify-center gap-2 rounded-lg bg-indigo-100 px-3 text-sm font-medium text-indigo-600">
+          <Clock5 className="h-4 w-4" />
+          2023/12/01
         </div>
       </div>
     </div>
