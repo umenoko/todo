@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [uuidOssp(map: "uuid-ossp", schema: "public")]
+}
+
+model User {
+  id      String @id @db.Uuid @default(dbgenerated("uuid_generate_v4()"))
+  email   String @unique
+  name    String
+  tickets UsersTickets[]
+  @@map("users")
+}
+
+model Status {
+  id      String @id @db.Uuid @default(dbgenerated("uuid_generate_v4()"))
+  name    String @unique
+  order   Int
+  tickets Ticket[]
+  @@map("statuses")
+}
+
+model Ticket {
+  id           String @id @db.Uuid @default(dbgenerated("uuid_generate_v4()"))
+  title        String
+  description  String
+  status       Status @relation(fields: [statusId], references: [id])
+  statusId     String @db.Uuid @map("status_id")
+  users        UsersTickets[]
+  @@map("tickets")
+}
+
+model UsersTickets {
+  id           String @id @db.Uuid @default(dbgenerated("uuid_generate_v4()"))
+  users        User   @relation(fields: [userId], references: [id])
+  userId       String @db.Uuid @map("user_id")
+  tickets      Ticket @relation(fields: [ticketId], references: [id])
+  ticketId     String @db.Uuid @map("ticket_id")
+  @@unique([userId, ticketId])
+  @@map("users_tickets")
+}
